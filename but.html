@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUT &amp; Compétences — Nolan Letaconnoux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav>
+      <a class="nav-logo" href="index.html">NL — BUT2 SD</a>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="but.html" class="active">BUT &amp; Compétences</a></li>
+        <li><a href="stage.html">Stage</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="page-intro">
+    <div class="wrap">
+      <p class="hero-label">BUT Sciences des Données — Semestres 3 &amp; 4</p>
+      <h1>Mon BUT <span>&amp; mes compétences</span></h1>
+      <p class="intro-text">
+        Le référentiel national du BUT Sciences des Données s'articule autour de quatre compétences.
+        Chacune des Situations d'Apprentissage et d'Évaluation (SAÉ) ci-dessous vient illustrer une ou
+        plusieurs de ces compétences à travers des projets concrets, menés seul ou en groupe.
+      </p>
+    </div>
+  </section>
+
+  <!-- VUE D'ENSEMBLE DES COMPÉTENCES -->
+  <section id="competences" style="padding-top:1rem;">
+    <div class="wrap">
+      <div class="comp-grid">
+
+        <a class="comp-card" href="#comp1">
+          <div class="comp-num">01</div>
+          <h3>Traiter des données à des fins décisionnelles</h3>
+          <ul>
+            <li>Conception d'architectures de données (Datawarehouse)</li>
+            <li>Processus ETL et requêtage SQL complexe</li>
+            <li>Schémas en étoile et en flocon (OLAP)</li>
+          </ul>
+          <span class="comp-badge">SAÉ 3.01 · 3.02</span>
+        </a>
+
+        <a class="comp-card" href="#comp2">
+          <div class="comp-num">02</div>
+          <h3>Analyser statistiquement les données</h3>
+          <ul>
+            <li>Exploration de données et tests d'hypothèses</li>
+            <li>Analyse de séries temporelles (décomposition, ACF)</li>
+            <li>Prévision par lissage exponentiel et Holt-Winters</li>
+          </ul>
+          <span class="comp-badge">SAÉ 3.03</span>
+        </a>
+
+        <a class="comp-card" href="#comp3">
+          <div class="comp-num">03</div>
+          <h3>Valoriser une production dans un contexte professionnel</h3>
+          <ul>
+            <li>Restitution et vulgarisation des résultats</li>
+            <li>Déploiement d'une application en ligne</li>
+            <li>Conformité réglementaire (RGPD, open data)</li>
+          </ul>
+          <span class="comp-badge">SAÉ 4.02</span>
+        </a>
+
+        <a class="comp-card" href="#comp4">
+          <div class="comp-num">04</div>
+          <h3>Développer un outil décisionnel (VCOD)</h3>
+          <ul>
+            <li>Dashboard interactif Shiny (R) sur la filière laitière</li>
+            <li>Rapport Power BI (stations de vélos / météo)</li>
+            <li>Automatisation des flux d'alimentation Talend</li>
+          </ul>
+          <span class="comp-badge">SAÉ 4.01</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCE 1 -->
+  <section class="comp-section" id="comp1">
+    <div class="wrap">
+      <div class="comp-section-header">
+        <span class="num">01</span>
+        <h2>Traiter des données à des fins décisionnelles</h2>
+      </div>
+
+      <p class="group-title"><span>SAÉ 3.01</span> Cas DARTIES</p>
+
+      <!-- 4-Scrap -->
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S3 · 3.01 · MODULE 4-SCRAP</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 1 — Traiter</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Collecte automatisée du catalogue Boulanger (Selenium)</h3>
+          <p class="sae-desc">
+            Dans le cadre du cas fictif DARTIES, collecte des données de produits (libellé, prix HT, catégorie, code-barres)
+            sur le site <em>boulanger.com</em>, un site à rendu JavaScript complexe. Le site utilisant AJAX, une approche
+            Selenium avec mode headless a été nécessaire, combinée à BeautifulSoup pour le parsing HTML.
+          </p>
+
+          <p class="sae-section-label">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">Python 3</span>
+            <span class="tool">Selenium</span>
+            <span class="tool">BeautifulSoup (bs4)</span>
+            <span class="tool">webdriver-manager</span>
+            <span class="tool">JSON</span>
+            <span class="tool">Chrome Headless</span>
+          </div>
+
+          <p class="sae-section-label">Extrait de code — collecte des 10 premiers produits</p>
+          <div class="code-snippet">
+<span class="comment"># Désactivation de la signature webdriver pour contourner les protections</span><br/>
+driver.execute_cdp_cmd(<br/>
+&nbsp;&nbsp;<span class="str">"Page.addScriptToEvaluateOnNewDocument"</span>,<br/>
+&nbsp;&nbsp;{<span class="str">"source"</span>: <span class="str">"Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"</span>}<br/>
+)<br/>
+<br/>
+<span class="comment"># Extraction du prix TTC → conversion en HT (÷ 1.2)</span><br/>
+price_value = <span class="kw">float</span>(re.sub(<span class="str">r"[^\d,]"</span>, <span class="str">""</span>, price_text).replace(<span class="str">","</span>, <span class="str">"."</span>))<br/>
+data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round</span>(price_value / 1.2, 2)})
+          </div>
+
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>Qualification du site</h4>
+              <p>Cas complexe — rendu JavaScript / AJAX. Sélecteurs CSS et XPath. Mesures de rétorsion : obligation d'identification via compte. Anti-bot actif.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Difficultés rencontrées</h4>
+              <p>Site inaccessible hors environnement authentifié depuis un runner CI. Stratégie de contournement via profil Chrome et désactivation du flag <code>webdriver</code>.</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — capture du script en cours d'exécution et/ou extrait du JSON de sortie</div>
+        </div>
+      </div>
+
+      <!-- 1-PROD + 2-OLAP -->
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S3 · 3.01 · MODULES 1-PROD &amp; 2-OLAP</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 1 — Traiter</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Modélisation du Datawarehouse — Schémas Production, Étoile &amp; Flocon</h3>
+          <p class="sae-desc">
+            Conception du schéma de production MySQL (tables <code>T_PRODUITS</code>, <code>T_COURS</code>, <code>T_CLIENTS</code>…)
+            puis dérivation vers un schéma décisionnel en flocon et en étoile avec vues matérialisées,
+            permettant des analyses OLAP multi-dimensionnelles.
+          </p>
+
+          <p class="sae-section-label">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">MySQL</span>
+            <span class="tool">Oracle SQL (OLAP)</span>
+            <span class="tool">Vues matérialisées</span>
+            <span class="tool">phpMyAdmin</span>
+            <span class="tool">Mondrian (ROLAP)</span>
+          </div>
+
+          <p class="sae-section-label">Extrait — schéma de production</p>
+          <div class="code-snippet">
+<span class="kw">CREATE TABLE</span> T_PRODUITS (<br/>
+&nbsp;&nbsp;REF_PRODUIT <span class="kw">INT PRIMARY KEY</span>,<br/>
+&nbsp;&nbsp;LIBELLE     <span class="kw">VARCHAR</span>(255),<br/>
+&nbsp;&nbsp;PRIX        <span class="kw">DECIMAL</span>(12,2),<br/>
+&nbsp;&nbsp;FAMILLE     <span class="kw">VARCHAR</span>(100),<br/>
+&nbsp;&nbsp;CATEGORIE   <span class="kw">VARCHAR</span>(100)<br/>
+);<br/>
+<br/>
+<span class="kw">CREATE TABLE</span> T_COURS (<br/>
+&nbsp;&nbsp;date           <span class="kw">DATE</span>,<br/>
+&nbsp;&nbsp;devise         <span class="kw">VARCHAR</span>(10),<br/>
+&nbsp;&nbsp;rate_vs_euro   <span class="kw">DOUBLE</span>,<br/>
+&nbsp;&nbsp;<span class="kw">PRIMARY KEY</span> (date, devise)<br/>
+);
+          </div>
+
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>Schéma en étoile</h4>
+              <p>Table de faits centrale (ventes) reliée aux dimensions PRODUIT, TEMPS, CLIENT et DEVISE. Optimisé pour les requêtes OLAP agrégées.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Vues matérialisées</h4>
+              <p>Pré-calcul des agrégats (CA par famille, par devise) pour simuler les cubes OLAP et accélérer les requêtes décisionnelles.</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — schéma relationnel (MCD/MLD) et capture du modèle dans phpMyAdmin ou Mondrian</div>
+        </div>
+      </div>
+
+      <!-- 6-ETL -->
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S3 · 3.01 · MODULE 6-ETL</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 1 — Traiter</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Processus ETL Python / MySQL — Alimentation du Datawarehouse</h3>
+          <p class="sae-desc">
+            Développement d'un pipeline ETL en Python avec <code>mysql.connector</code> pour l'extraction,
+            la transformation et le chargement des données collectées (produits Boulanger, cours monétaires)
+            vers le Datawarehouse MySQL. Configuration d'un serveur ROLAP Mondrian pour les analyses multidimensionnelles.
+          </p>
+
+          <p class="sae-section-label">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">Python</span>
+            <span class="tool">mysql-connector-python</span>
+            <span class="tool">Jupyter Notebook</span>
+            <span class="tool">MariaDB / MySQL</span>
+            <span class="tool">Mondrian (ROLAP)</span>
+          </div>
+
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>Extraction</h4>
+              <p>Lecture des fichiers JSON issus du scraping Boulanger et des CSV de cours monétaires journaliers (t_cours.csv, t_devise.csv).</p>
+            </div>
+            <div class="detail-box">
+              <h4>Transformation &amp; Chargement</h4>
+              <p>Nettoyage des valeurs nulles, normalisation des devises, insertion par batch dans les tables de production via requêtes paramétrées.</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — capture du notebook Jupyter ou du résultat de l'insertion en base</div>
+        </div>
+      </div>
+
+      <p class="group-title"><span>SAÉ 3.02</span> Intégration de données dans un Datawarehouse</p>
+
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S3 · 3.02 · ETL TALEND</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 1 — Traiter</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Prise en main et maîtrise de Talend Open Studio for Data Integration</h3>
+          <p class="sae-desc">
+            SAÉ de découverte et de pratique de l'outil ETL Talend (v8.0), à travers une progression allant de la
+            visualisation simple de fichiers délimités jusqu'à la réalisation de jointures multi-sources, d'agrégations
+            et de flux de nettoyage de données — le tout orienté vers l'alimentation d'un entrepôt de données.
+          </p>
+
+          <p class="sae-section-label">Ce que j'ai appris à faire</p>
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>Référentiel de métadonnées</h4>
+              <p>Création de connexions vers des sources hétérogènes (TXT, CSV, ACCESS, Oracle, XML, JSON) et représentation unifiée en format tabulaire, peu importe le format d'origine.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Composants clés maîtrisés</h4>
+              <p><code>tFileInputDelimited</code>, <code>tOracleInput</code>, <code>tAccessOutput</code>, <code>tLogRow</code> pour la visualisation, <code>tFilterRow</code> pour la sélection, <code>tAggregateRow</code> pour les agrégats (équivalent GROUP BY).</p>
+            </div>
+            <div class="detail-box">
+              <h4>Composant tMap — jointures &amp; transformations</h4>
+              <p>Réalisation de jointures entre tables ACCESS et Oracle (entrée principale + entrée lookup), avec gestion du type de jointure (left/inner), du match model et des valeurs nulles.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Qualité des données</h4>
+              <p>Gestion des données rejetées (flux <em>reject</em>), standardisation des noms/prénoms, ajout de clés de substitution, horodatage de chargement et capture des changements (CDC).</p>
+            </div>
+          </div>
+
+          <p class="sae-section-label" style="margin-top:1.5rem;">Processus ETL générique appliqué</p>
+          <div class="code-snippet">
+<span class="comment">-- Alimentation de la table de faits (équivalent SQL du job Talend)</span><br/>
+<span class="kw">INSERT INTO</span> TD3_tdf (idclient, idtemps, idproduit, CA, Qtvendue, nbVentes)<br/>
+<span class="kw">SELECT</span><br/>
+&nbsp;&nbsp;y.idclient, y.idtemps,<br/>
+&nbsp;&nbsp;x.idproduit,<br/>
+&nbsp;&nbsp;x.quantite * x.prix_unitaire, <span class="comment">-- mesure CA</span><br/>
+&nbsp;&nbsp;x.quantite,<br/>
+&nbsp;&nbsp;1<br/>
+<span class="kw">FROM</span> TD3_detailscommandes x, TD3_commandes y<br/>
+<span class="kw">WHERE</span> y.idcommande = x.idcommande;
+          </div>
+
+          <p class="sae-section-label" style="margin-top:1.5rem;">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">Talend Open Studio 8.0</span>
+            <span class="tool">Java (code généré)</span>
+            <span class="tool">MS Access</span>
+            <span class="tool">Oracle</span>
+            <span class="tool">CSV / TXT / XML / JSON</span>
+            <span class="tool">Regex Java</span>
+          </div>
+
+          <div class="sae-details" style="margin-top:1.2rem;">
+            <div class="detail-box">
+              <h4>Difficultés rencontrées</h4>
+              <p>Gestion des schémas entre composants (correspondance par nom strict), paramétrage des modules complémentaires JDBC pour Oracle, et compréhension du mécanisme de capture des changements (CDC) entre deux extractions.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Lien avec le PN</h4>
+              <p>Compétence 1 (Traiter) : alimentation d'un Datawarehouse multi-sources. Compétence 4 (Développer) : automatisation des flux via jobs Talend planifiables et génération de code Java exécutable.</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — capture du job Talend (vue graphique des composants) sous Open Studio</div>
+        </div>
+      </div>
+
+      <p class="crossref">
+        Cette compétence est également mobilisée par la SAÉ 4.01 (voir <a href="#comp4">Compétence 4 — Développer</a>)
+        ainsi que par mon <a href="stage.html">stage en entreprise</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCE 2 -->
+  <section class="comp-section" id="comp2">
+    <div class="wrap">
+      <div class="comp-section-header">
+        <span class="num">02</span>
+        <h2>Analyser statistiquement les données</h2>
+      </div>
+
+      <p class="group-title"><span>SAÉ 3.03</span> Production laitière en Bretagne</p>
+
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S3 · 3.03 · SÉRIES TEMPORELLES</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 2 — Analyser</span>
+            <span class="badge badge-green">Comp. 3 — Valoriser</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Étude de la production laitière en Bretagne (2013–2025)</h3>
+          <p class="sae-desc">
+            Analyse statistique complète d'une série chronologique mensuelle sur la filière laitière bretonne,
+            distinguant production <strong>biologique</strong> et <strong>conventionnelle</strong>.
+            Données FranceAgriMer / VISIONet couvrant 372 à 877 producteurs bio et 7 959 à 13 146 producteurs conventionnels.
+            Livrable final : un <strong>notebook RMarkdown</strong> et une <strong>application Shiny</strong> interactive.
+            Réalisé en groupe avec R. Gasnier-Bouvet, R. Pouvreau et L. Li-King.
+          </p>
+
+          <p class="sae-section-label">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">R / RStudio</span>
+            <span class="tool">RMarkdown</span>
+            <span class="tool">ggplot2</span>
+            <span class="tool">pastecs</span>
+            <span class="tool">skimr</span>
+            <span class="tool">naniar</span>
+            <span class="tool">Holt-Winters</span>
+            <span class="tool">SARIMA</span>
+            <span class="tool">Shiny</span>
+          </div>
+
+          <p class="sae-section-label">Démarche analytique</p>
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>1. Exploration &amp; Statistiques descriptives</h4>
+              <p>Analyse de la structure des séries (fréquence mensuelle, effectifs, valeurs manquantes) via <code>skim()</code> et <code>summary()</code>. Visualisation des saisons superposées par année.</p>
+            </div>
+            <div class="detail-box">
+              <h4>2. Décomposition de la série</h4>
+              <p>Choix du modèle <strong>multiplicatif</strong> (saisonnalité dont l'amplitude croît avec le niveau). Décomposition : tendance, saisonnalité mensuelle (S=12), résidu.</p>
+            </div>
+            <div class="detail-box">
+              <h4>3. Corrélogramme (ACF)</h4>
+              <p>Autocorrélation très forte aux premiers retards → série non-stationnaire. Pic à lag 12 confirmant la saisonnalité annuelle, justifiant un modèle SARIMA.</p>
+            </div>
+            <div class="detail-box">
+              <h4>4. Prévision à 24 mois</h4>
+              <p>Lissage exponentiel par <strong>Holt-Winters</strong> (<code>HoltWinters(bio.ts)</code>) avec prédiction à horizon 24 mois. La collecte bio présente un trend croissant net depuis 2018.</p>
+            </div>
+          </div>
+
+          <p class="sae-section-label" style="margin-top:1.5rem;">Résultats clés</p>
+          <div class="code-snippet">
+<span class="comment"># Holt-Winters sur la série bio — prévision 2 ans</span><br/>
+bio.Holt = <span class="kw">HoltWinters</span>(x = bio.ts)<br/>
+bio.Holt.pred = <span class="kw">predict</span>(bio.Holt, n.ahead = <span class="str">24</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prediction.interval = <span class="kw">FALSE</span>)<br/>
+<br/>
+<span class="comment"># Série conventionnelle : saisonnalité max au printemps, baisse estivale</span><br/>
+<span class="comment"># Comportement stable → facilite la planification opérationnelle</span><br/>
+conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=<span class="str">"multiplicative"</span>)
+          </div>
+
+          <div class="sae-details" style="margin-top:1.2rem;">
+            <div class="detail-box">
+              <h4>Application Shiny</h4>
+              <p>Interface interactive (ui.R / server.R / global.R) permettant de visualiser et comparer les deux filières dynamiquement, avec paramétrage de la fenêtre temporelle.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Réflexion critique</h4>
+              <p>Arbitrage additif vs multiplicatif (choix final multiplicatif justifié par la variance croissante). Critères AIC/BIC pour la sélection de l'ordre SARIMA.</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — graphiques de décomposition, ACF/PACF et prévision Holt-Winters, ou capture de l'application Shiny</div>
+        </div>
+      </div>
+
+      <p class="crossref">
+        Cette compétence est également mobilisée par la SAÉ 4.02 (voir <a href="#comp3">Compétence 3 — Valoriser</a>).
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCE 3 -->
+  <section class="comp-section" id="comp3">
+    <div class="wrap">
+      <div class="comp-section-header">
+        <span class="num">03</span>
+        <h2>Valoriser une production dans un contexte professionnel</h2>
+      </div>
+
+      <p class="group-title"><span>SAÉ 4.02</span> Wine Explorer · Vinho Verde</p>
+
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S4 · 4.02 · DASHBOARD R SHINY · ANALYSE DE DONNÉES</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 2 — Analyser</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+            <span class="badge badge-gold">Comp. 3 — Valoriser</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Dashboard interactif d'aide à la sélection de vins — Vinho Verde, Portugal</h3>
+          <p class="sae-desc">
+            Développement d'un outil d'analyse et de recommandation de vins à partir du dataset <em>Cortez et al. (2009)</em> :
+            6 497 vins de la région Vinho Verde (1 599 rouges, 4 898 blancs), décrits par 11 paramètres physico-chimiques
+            et une note de qualité (0–10). Le projet répond à une problématique concrète : <strong>comment aider un client
+            à choisir son vin dans un distributeur ?</strong>
+            Réalisé en groupe avec M. Abric-Segarra et E. Leclercq. Application déployée sur ShinyApps.io.
+          </p>
+
+          <p class="sae-section-label">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">R / RStudio</span>
+            <span class="tool">Shiny</span>
+            <span class="tool">Plotly</span>
+            <span class="tool">dplyr</span>
+            <span class="tool">DT (DataTables)</span>
+            <span class="tool">tidyr</span>
+            <span class="tool">ShinyApps.io (déploiement)</span>
+          </div>
+
+          <p class="sae-section-label">Architecture — 4 onglets de l'application</p>
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>1. Vue d'ensemble</h4>
+              <p>KPIs globaux (6 497 vins analysés, note moy. 5,9/10, alcool moy. 11%, 198 vins exceptionnels), répartition par profil aromatique, distribution des notes et comparaison des profils sur paramètres normalisés.</p>
+            </div>
+            <div class="detail-box">
+              <h4>2. Trouver mon vin</h4>
+              <p>6 filtres combinés : occasion/plat, profil de style, qualité minimum, sliders alcool/sucres/acidité. Scatter plot interactif alcool vs qualité + tableau de résultats filtré et fiche profil contextuelle.</p>
+            </div>
+            <div class="detail-box">
+              <h4>3. Profils de style</h4>
+              <p>8 fiches aromatiques (4 blancs, 4 rouges) avec critères physico-chimiques, accords mets et température de service. Boxplot interactif de la qualité médiane par profil.</p>
+            </div>
+            <div class="detail-box">
+              <h4>4. Analyses libres</h4>
+              <p>Nuage de points paramétrable (axe X/Y au choix parmi 12 variables, coloration par profil ou couleur), distribution (histogramme ou boxplot), et matrice de corrélation sur variables sélectionnables.</p>
+            </div>
+          </div>
+
+          <p class="sae-section-label" style="margin-top:1.5rem;">Classification en 8 profils aromatiques — extrait du code</p>
+          <div class="code-snippet">
+<span class="comment"># Règles métier de classification (global.R)</span><br/>
+wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
+&nbsp;&nbsp;style = <span class="kw">case_when</span>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &gt;= 10                    ~ <span class="str">"Moelleux &amp; Rond"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &lt; 3 &amp; fixed.acidity &gt; 7 ~ <span class="str">"Sec &amp; Minéral"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; alcohol &lt; 10.5 &amp; residual.sugar &lt; 5    ~ <span class="str">"Léger &amp; Délicat"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; alcohol &gt; 12.5 &amp; sulphates &gt; 0.7       ~ <span class="str">"Puissant &amp; Corsé"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; volatile.acidity &gt; 0.6 &amp; alcohol &gt; 11.5 ~ <span class="str">"Épicé &amp; Robuste"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">...</span><br/>
+&nbsp;&nbsp;),<br/>
+&nbsp;&nbsp;accord = <span class="kw">case_when</span>(style == <span class="str">"Léger &amp; Délicat"</span> ~ <span class="str">"Fruits de mer, sushis"</span>, <span class="comment">...</span>),<br/>
+&nbsp;&nbsp;temperature = <span class="kw">case_when</span>(type == <span class="str">"white"</span> ~ <span class="str">"8-10 C"</span>, type == <span class="str">"red"</span> ~ <span class="str">"16-18 C"</span>, <span class="comment">...</span>)<br/>
+)
+          </div>
+
+          <div class="sae-details" style="margin-top:1.2rem;">
+            <div class="detail-box">
+              <h4>Difficultés rencontrées</h4>
+              <p>Conception des règles de classification métier (arbitrage des seuils entre profils contigus), réactivité Shiny avec filtres croisés sur 6 497 lignes, et déploiement sur ShinyApps.io avec gestion des dépendances.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Application déployée en ligne</h4>
+              <p>L'application est accessible publiquement : <a href="https://maxence-abricsegarra-acp.shinyapps.io/SoutenanceFinale402/" target="_blank" style="color:var(--cyan); text-decoration:none;">shinyapps.io → SoutenanceFinale402</a>. Livrable de valorisation concret, démontrant la compétence "Valoriser une production".</p>
+            </div>
+          </div>
+
+          <div class="render-box">Espace réservé — captures des 4 onglets de l'application Shiny (Vue d'ensemble, Trouver mon vin, Profils de style, Analyses libres)</div>
+        </div>
+      </div>
+
+      <p class="crossref">
+        Cette compétence est également mobilisée par la SAÉ 3.03 (voir <a href="#comp2">Compétence 2 — Analyser</a>),
+        par la SAÉ 4.01 (voir <a href="#comp4">Compétence 4 — Développer</a>) et par mon
+        <a href="stage.html">stage en entreprise</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCE 4 -->
+  <section class="comp-section" id="comp4">
+    <div class="wrap">
+      <div class="comp-section-header">
+        <span class="num">04</span>
+        <h2>Développer un outil décisionnel (VCOD)</h2>
+      </div>
+
+      <p class="group-title"><span>SAÉ 4.01</span> Projet Décisionnel Vélos en libre-service</p>
+
+      <div class="sae-block">
+        <div class="sae-header">
+          <span class="sae-id">S4 · 4.01 · PROJET DÉCISIONNEL COMPLET</span>
+          <div class="sae-badges">
+            <span class="badge badge-blue">Comp. 1 — Traiter</span>
+            <span class="badge badge-green">Comp. 4 — Développer</span>
+            <span class="badge badge-gold">Comp. 3 — Valoriser</span>
+          </div>
+        </div>
+        <div class="sae-body">
+          <h3 class="sae-title">Supervision des stations de vélos (Marseille / Nantes) &amp; corrélation météo</h3>
+          <p class="sae-desc">
+            Projet décisionnel end-to-end : conception du modèle de données, intégration ETL via Talend (3 sources open data JSON),
+            et rapport Power BI interactif pour piloter la fréquentation des stations de vélos en libre-service
+            et mesurer l'impact des conditions météorologiques.
+          </p>
+
+          <p class="sae-section-label">Sources de données open data</p>
+          <div class="tools">
+            <span class="tool">Marseille — Métropole AMP (GBFS)</span>
+            <span class="tool">Nantes — data.nantesmetropole.fr</span>
+            <span class="tool">Météo — OpenDataSoft (SYNOP)</span>
+          </div>
+
+          <div class="sae-details">
+            <div class="detail-box">
+              <h4>Partie 1 — Modélisation</h4>
+              <p>Conception d'un schéma en étoile : table de faits (indicateurs stations + météo) et tables de dimensions (TEMPS, STATION, VILLE, CONDITIONS). Dictionnaire des données et documentation des flux.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Partie 2 — Intégration Talend</h4>
+              <p>3 jobs Talend (Open Studio) récupérant les flux JSON via API REST, nettoyage des doublons, homogénéisation des libellés, gestion des données manquantes. Date de chargement pour historisation incrémentale.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Partie 3 — Visualisation Power BI</h4>
+              <p>Rapport <code>Robin_v1.pbix</code> : supervision de la disponibilité des vélos par heure, corrélation avec précipitations et température, heatmaps par station.</p>
+            </div>
+            <div class="detail-box">
+              <h4>Difficultés &amp; Réflexion</h4>
+              <p>Données en format JSON non-normalisé. Anomalies dans les libellés de stations (caractères spéciaux, codifications incohérentes entre Marseille et Nantes). Traitement de correction documenté dans le rapport.</p>
+            </div>
+          </div>
+
+          <p class="sae-section-label" style="margin-top:1.5rem;">Outils &amp; technologies</p>
+          <div class="tools">
+            <span class="tool">Talend Open Studio</span>
+            <span class="tool">Power BI Desktop</span>
+            <span class="tool">API REST (JSON)</span>
+            <span class="tool">SQL</span>
+            <span class="tool">Diagrams.net</span>
+          </div>
+
+          <div class="render-box">Espace réservé — schéma en étoile (diagrams.net) et captures du rapport Power BI (vue supervision, corrélation météo)</div>
+        </div>
+      </div>
+
+      <p class="crossref">
+        Cette compétence est également mobilisée par les SAÉ 3.01 et 3.02 (voir <a href="#comp1">Compétence 1 — Traiter</a>),
+        par la SAÉ 3.03 et la SAÉ 4.02 (voir <a href="#comp2">Compétence 2</a> et <a href="#comp3">Compétence 3</a>),
+        ainsi que par mon <a href="stage.html">stage en entreprise</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- PERSPECTIVES B3 -->
+  <section id="perspectives">
+    <div class="wrap">
+      <p class="section-eyebrow">Perspectives</p>
+      <h2 class="section-title">Vers le <span>BUT 3</span></h2>
+
+      <div class="proj-block">
+        <p style="color: var(--muted); max-width: 700px; font-size: .95rem; margin-bottom: .5rem;">
+          Fort des compétences VCOD acquises en S3 et S4 — collecte, ETL, dashboards décisionnels, analyse de données —
+          et de l'expérience terrain au Groupe MAT!, voici les axes que je souhaite renforcer en BUT 3.
+        </p>
+
+        <div class="proj-goals">
+          <div class="proj-goal">
+            <div class="num">01</div>
+            <h4>Machine Learning appliqué à la BI</h4>
+            <p>Intégrer des algorithmes de scoring et de prédiction directement dans les outils décisionnels (Power BI, Shiny) pour enrichir l'aide à la décision.</p>
+          </div>
+          <div class="proj-goal">
+            <div class="num">02</div>
+            <h4>Industrialisation des pipelines</h4>
+            <p>Passer du prototype au déploiement robuste : automatisation des flux ETL, planification des jobs Talend, et fiabilisation des mises à jour de données.</p>
+          </div>
+          <div class="proj-goal">
+            <div class="num">03</div>
+            <h4>BI avancée — DAX &amp; dataflows</h4>
+            <p>Maîtriser les couches sémantiques avancées de Power BI (mesures DAX, dataflows, modèles tabulaires) pour des rapports plus performants et maintenables.</p>
+          </div>
+          <div class="proj-goal">
+            <div class="num">04</div>
+            <h4>Montée en responsabilité — Groupe MAT!</h4>
+            <p>Apporter une valeur ajoutée croissante à l'établissement Cozigou en autonomie sur les projets data, en lien direct avec les besoins opérationnels du terrain.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="divider"></div>
+      <p>&copy; 2026 — <span>Nolan Letaconnoux</span> · Portfolio BUT 2 Sciences des Données </p>
+    </div>
+  </footer>
+
+</body>
+</html>
