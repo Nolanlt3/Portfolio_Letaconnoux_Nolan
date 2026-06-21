@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stage — Nolan Letaconnoux</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght=0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-
-  <!-- NAV -->
-  <header>
-    <nav>
-      <a class="nav-logo" href="index.html">NL — BUT2 SD</a>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="but.html">BUT &amp; Compétences</a></li>
-        <li><a href="stage.html" class="active">Stage</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- INTRO -->
-  <section class="page-intro">
-    <div class="wrap">
-      <p class="hero-label">BUT Sciences des Données — Stage de 2ème année</p>
-      <h1>Mon Stage au <span>Groupe MAT!</span></h1>
-      <p class="intro-text">
-        Du 7 avril au 19 juin 2026, j'ai exercé en tant que Data Analyst au sein de la Direction informatique du Groupe MAT!, un acteur majeur de la distribution de boissons en Bretagne. Ma mission a consisté à auditer et optimiser un Dashboard décisionnel sous QlikView, puis à concevoir un outil d'analyse nomade "Mobile First" sous Qlik Sense pour accompagner les commerciaux.
-      </p>
-    </div>
-  </section>
-
-  <!-- SECTIONS DE STAGE -->
-  <section id="competences" style="padding-top:1rem;">
-    <div class="wrap">
-
-      <p class="group-title"><span>Mission Principale</span> Refonte du Dashboard QlikView</p>
-
-      <!-- Modélisation QlikView -->
+<!-- Modélisation QlikView -->
       <div class="sae-block">
         <div class="sae-header">
           <span class="sae-id">ARCHITECTURE &amp; MODÉLISATION</span>
@@ -54,6 +13,7 @@
             Le tableau de bord décisionnel "Direction Site" repose sur un modèle relationnel complexe composé de 20 tables liées et de 332 champs, dont des tables de faits massives centralisant plus de 4,1 millions de lignes.
           </p>
           <div class="render-box" style="text-align: center;">
+            <!-- .png est correct ici selon ta capture -->
             <img src="images/figure3.png" alt="Modèle de données du tableau de bord Direction Site" style="max-width: 100%; border-radius: 8px;" />
             <p style="font-size: 0.9em; margin-top: 0.5rem; color: #555;"><em>Figure 3 : Modèle de données du tableau de bord Direction Site</em></p>
           </div>
@@ -75,7 +35,8 @@
             Pour analyser précisément les pratiques réelles des utilisateurs sur les 46 pages du tableau de bord, j'ai implémenté une macro de suivi générant un journal de logs. Les données extraites ont été traitées directement dans une interface QlikView afin d'identifier les éléments inutilisés et de rationaliser l'application.
           </p>
           <div class="render-box" style="text-align: center;">
-            <img src="images/figure5.png" alt="Tableau de bord d'analyse des logs QlikView" style="max-width: 100%; border-radius: 8px;" />
+            <!-- Modifié en .PNG -->
+            <img src="images/figure5.PNG" alt="Tableau de bord d'analyse des logs QlikView" style="max-width: 100%; border-radius: 8px;" />
             <p style="font-size: 0.9em; margin-top: 0.5rem; color: #555;"><em>Figure 5 : Tableau de bord d'analyse des logs QlikView</em></p>
           </div>
         </div>
@@ -98,13 +59,15 @@
           
           <p class="sae-section-label">Avant la refonte</p>
           <div class="render-box" style="text-align: center;">
-            <img src="images/figure6.png" alt="Interface du menu principal de base de l'application" style="max-width: 100%; border-radius: 8px;" />
+            <!-- Modifié en .PNG -->
+            <img src="images/figure6.PNG" alt="Interface du menu principal de base de l'application" style="max-width: 100%; border-radius: 8px;" />
             <p style="font-size: 0.9em; margin-top: 0.5rem; color: #555;"><em>Figure 6 : Interface du menu principal de base de l'application</em></p>
           </div>
 
           <p class="sae-section-label" style="margin-top:1.5rem;">Version Finale Optimisée</p>
           <div class="render-box" style="text-align: center;">
-            <img src="images/figure8.png" alt="Version finale du menu principal" style="max-width: 100%; border-radius: 8px;" />
+            <!-- Modifié en .PNG -->
+            <img src="images/figure8.PNG" alt="Version finale du menu principal" style="max-width: 100%; border-radius: 8px;" />
             <p style="font-size: 0.9em; margin-top: 0.5rem; color: #555;"><em>Figure 8 : Version finale du menu principal avec l'aménagement d'un espace de filtres globaux</em></p>
           </div>
         </div>
@@ -128,6 +91,7 @@
           </p>
           
           <div class="render-box" style="text-align: center;">
+            <!-- .png est correct ici selon ta capture -->
             <img src="images/figure16.png" alt="Modèle de données de l'application Qlik Sense" style="max-width: 100%; border-radius: 8px;" />
             <p style="font-size: 0.9em; margin-top: 0.5rem; color: #555;"><em>Figure 16 : Modèle de données de l'application Qlik Sense</em></p>
           </div>
@@ -137,21 +101,17 @@
             <div class="detail-box">
               <h4>1. Fiche d'identité synthétique</h4>
               <p>Une vue d'ensemble récapitulative orientée sur l'équipement du client et la répartition du CA par famille de produits.</p>
-              <img src="images/figure17.png" alt="Page Information Client du Qlik Sense" style="width:100%; margin-top: 0.5rem; border-radius: 4px;" />
+              <!-- Modifié en .PNG -->
+              <img src="images/figure17.PNG" alt="Page Information Client du Qlik Sense" style="width:100%; margin-top: 0.5rem; border-radius: 4px;" />
               <p style="text-align: center; font-size: 0.8em; color: #555; margin-top: 0.5rem;"><em>Figure 17 : Page Information Client</em></p>
             </div>
             <div class="detail-box">
               <h4>2. Analyse de performance et scoring</h4>
               <p>Suivi de la trajectoire mensuelle et catégorisation automatisée des clients par fractiles (segmentation du CA hors ristourne).</p>
-              <img src="images/figure18.png" alt="Page Performance Client du Qlik Sense" style="width:100%; margin-top: 0.5rem; border-radius: 4px;" />
+              <!-- Modifié en .PNG -->
+              <img src="images/figure18.PNG" alt="Page Performance Client du Qlik Sense" style="width:100%; margin-top: 0.5rem; border-radius: 4px;" />
               <p style="text-align: center; font-size: 0.8em; color: #555; margin-top: 0.5rem;"><em>Figure 18 : Page Performance Client</em></p>
             </div>
           </div>
         </div>
       </div>
-
-    </div>
-  </section>
-
-</body>
-</html>
