@@ -134,20 +134,6 @@
             </div>
           </div>
 
-          <p class="sae-section-label" style="margin-top:1.5rem;">Processus ETL générique appliqué</p>
-          <div class="code-snippet">
-            <span class="comment">-- Alimentation de la table de faits (équivalent SQL du job Talend)</span><br/>
-            <span class="kw">INSERT INTO</span> TD3_tdf (idclient, idtemps, idproduit, CA, Qtvendue, nbVentes)<br/>
-            <span class="kw">SELECT</span><br/>
-            &nbsp;&nbsp;y.idclient, y.idtemps,<br/>
-            &nbsp;&nbsp;x.idproduit,<br/>
-            &nbsp;&nbsp;x.quantite * x.prix_unitaire, <span class="comment">-- mesure CA</span><br/>
-            &nbsp;&nbsp;x.quantite,<br/>
-            &nbsp;&nbsp;1<br/>
-            <span class="kw">FROM</span> TD3_detailscommandes x, TD3_commandes y<br/>
-            <span class="kw">WHERE</span> y.idcommande = x.idcommande;
-          </div>
-
           <p class="sae-section-label" style="margin-top:1.5rem;">Outils &amp; technologies</p>
           <div class="tools">
             <span class="tool">Talend Open Studio 8.0</span>
@@ -173,7 +159,7 @@
         </div>
       </div>
     </div>
-  </section> <!-- /CORRECTION : Balise fermée ici -->
+  </section> 
 
   <!-- COMPÉTENCE 2 -->
   <section class="comp-section" id="comp2">
@@ -260,14 +246,14 @@
             </div>
           </div>
 
-          <div class="sae-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+          <div class="sae-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;">
             <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
               <img src="images/image6.png" alt="Graphiques de décomposition de la série temporelle" style="width: 100%; height: auto; display: block;" />
             </div>
             <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
               <img src="images/image7.png" alt="Analyse des corrélogrammes ACF et PACF" style="width: 100%; height: auto; display: block;" />
             </div>
-            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card); grid-column: span 2; max-width: 700px; margin: 0 auto; width: 100%;">
               <img src="images/image8.png" alt="Prévisions Holt-Winters et interface Shiny" style="width: 100%; height: auto; display: block;" />
             </div>
           </div>
@@ -301,7 +287,7 @@
             Développement d'un outil d'analyse et de recommandation de vins à partir du dataset <em>Cortez et al. (2009)</em> :
             6 497 vins de la région Vinho Verde (1 599 rouges, 4 898 blancs), décrits par 11 paramètres physico-chimiques
             et une note de qualité (0–10). Le projet répond à une problématique concrète : <strong>comment aider un client
-            à choisir son vin dans un distributeur ?</strong>
+            à choisir son vin ?</strong>
             Réalisé en groupe avec 2 collègues. Application déployée sur ShinyApps.io.
           </p>
 
@@ -364,7 +350,17 @@
             </div>
           </div>
 
-          <div class="render-box">Espace réservé — captures des 4 onglets de l'application Shiny (Vue d'ensemble, Trouver mon vin, Profils de style, Analyses libres)</div>
+          <div class="sae-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;">
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image3.png" alt="Application Shiny - Vue d'ensemble et filtres" style="width: 100%; height: auto; display: block;" />
+            </div>
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image4.png" alt="Application Shiny - Trouver mon vin et Profils" style="width: 100%; height: auto; display: block;" />
+            </div>
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card); grid-column: span 2; max-width: 700px; margin: 0 auto; width: 100%;">
+              <img src="images/image5.png" alt="Application Shiny - Analyses libres et graphiques" style="width: 100%; height: auto; display: block;" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -432,10 +428,16 @@
             <span class="tool">Diagrams.net</span>
           </div>
 
-          <div class="render-box">Espace réservé — schéma en étoile (diagrams.net) et captures du rapport Power BI (vue supervision, corrélation météo)</div>
+          <div class="sae-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image1.png" alt="Modélisation décisionnelle - Schéma en étoile" style="width: 100%; height: auto; display: block;" />
+            </div>
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image2.png" alt="Rapport Power BI - Supervision et corrélation météo" style="width: 100%; height: auto; display: block;" />
+            </div>
+          </div>
         </div>
-      </div> <!-- /CORRECTION : Ajout du div fermant pour .sae-body -->
-    </div>
+      </div> </div>
   </section>
 
   <!-- PERSPECTIVES B3 -->
@@ -482,7 +484,7 @@
       <div class="divider"></div>
       <p>&copy; 2026 — <span>Nolan Letaconnoux</span> · Portfolio BUT 2 Sciences des Données </p>
     </div>
-  </header> <!-- Note: Tu devrais peut-être changer ce </header> en </footer> selon ton CSS, mais la structure globale est sauve ! -->
+  </footer> 
 
 </body>
 </html>
