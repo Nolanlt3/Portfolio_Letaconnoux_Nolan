@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BUT &amp; Compétences — Nolan Letaconnoux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght=400;600;700;800&family=IBM+Plex+Mono:wght=400;500&family=DM+Sans:ital,wght=0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -48,7 +48,7 @@
             <li>Processus ETL et requêtage SQL complexe</li>
             <li>Schémas en étoile et en flocon (OLAP)</li>
           </ul>
-          <span class="comp-badge">SAÉ 3.01 · 3.02</span>
+          <span class="comp-badge">SAÉ 3.02</span>
         </a>
 
         <a class="comp-card" href="#comp2">
@@ -96,163 +96,6 @@
         <h2>Traiter des données à des fins décisionnelles</h2>
       </div>
 
-      <p class="group-title"><span>SAÉ 3.01</span> Cas DARTIES</p>
-
-      <!-- 4-Scrap -->
-      <div class="sae-block">
-        <div class="sae-header">
-          <span class="sae-id">S3 · 3.01 · MODULE 4-SCRAP</span>
-          <div class="sae-badges">
-            <span class="badge badge-blue">Comp. 1 — Traiter</span>
-            <span class="badge badge-green">Comp. 4 — Développer</span>
-          </div>
-        </div>
-        <div class="sae-body">
-          <h3 class="sae-title">Collecte automatisée du catalogue Boulanger (Selenium)</h3>
-          <p class="sae-desc">
-            Dans le cadre du cas fictif DARTIES, collecte des données de produits (libellé, prix HT, catégorie, code-barres)
-            sur le site <em>boulanger.com</em>, un site à rendu JavaScript complexe. Le site utilisant AJAX, une approche
-            Selenium avec mode headless a été nécessaire, combinée à BeautifulSoup pour le parsing HTML.
-          </p>
-
-          <p class="sae-section-label">Outils &amp; technologies</p>
-          <div class="tools">
-            <span class="tool">Python 3</span>
-            <span class="tool">Selenium</span>
-            <span class="tool">BeautifulSoup (bs4)</span>
-            <span class="tool">webdriver-manager</span>
-            <span class="tool">JSON</span>
-            <span class="tool">Chrome Headless</span>
-          </div>
-
-          <p class="sae-section-label">Extrait de code — collecte des 10 premiers produits</p>
-          <div class="code-snippet">
-<span class="comment"># Désactivation de la signature webdriver pour contourner les protections</span><br/>
-driver.execute_cdp_cmd(<br/>
-&nbsp;&nbsp;<span class="str">"Page.addScriptToEvaluateOnNewDocument"</span>,<br/>
-&nbsp;&nbsp;{<span class="str">"source"</span>: <span class="str">"Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"</span>}<br/>
-)<br/>
-<br/>
-<span class="comment"># Extraction du prix TTC → conversion en HT (÷ 1.2)</span><br/>
-price_value = <span class="kw">float</span>(re.sub(<span class="str">r"[^\d,]"</span>, <span class="str">""</span>, price_text).replace(<span class="str">","</span>, <span class="str">"."</span>))<br/>
-data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round</span>(price_value / 1.2, 2)})
-          </div>
-
-          <div class="sae-details">
-            <div class="detail-box">
-              <h4>Qualification du site</h4>
-              <p>Cas complexe — rendu JavaScript / AJAX. Sélecteurs CSS et XPath. Mesures de rétorsion : obligation d'identification via compte. Anti-bot actif.</p>
-            </div>
-            <div class="detail-box">
-              <h4>Difficultés rencontrées</h4>
-              <p>Site inaccessible hors environnement authentifié depuis un runner CI. Stratégie de contournement via profil Chrome et désactivation du flag <code>webdriver</code>.</p>
-            </div>
-          </div>
-
-          <div class="render-box">Espace réservé — capture du script en cours d'exécution et/ou extrait du JSON de sortie</div>
-        </div>
-      </div>
-
-      <!-- 1-PROD + 2-OLAP -->
-      <div class="sae-block">
-        <div class="sae-header">
-          <span class="sae-id">S3 · 3.01 · MODULES 1-PROD &amp; 2-OLAP</span>
-          <div class="sae-badges">
-            <span class="badge badge-blue">Comp. 1 — Traiter</span>
-            <span class="badge badge-green">Comp. 4 — Développer</span>
-          </div>
-        </div>
-        <div class="sae-body">
-          <h3 class="sae-title">Modélisation du Datawarehouse — Schémas Production, Étoile &amp; Flocon</h3>
-          <p class="sae-desc">
-            Conception du schéma de production MySQL (tables <code>T_PRODUITS</code>, <code>T_COURS</code>, <code>T_CLIENTS</code>…)
-            puis dérivation vers un schéma décisionnel en flocon et en étoile avec vues matérialisées,
-            permettant des analyses OLAP multi-dimensionnelles.
-          </p>
-
-          <p class="sae-section-label">Outils &amp; technologies</p>
-          <div class="tools">
-            <span class="tool">MySQL</span>
-            <span class="tool">Oracle SQL (OLAP)</span>
-            <span class="tool">Vues matérialisées</span>
-            <span class="tool">phpMyAdmin</span>
-            <span class="tool">Mondrian (ROLAP)</span>
-          </div>
-
-          <p class="sae-section-label">Extrait — schéma de production</p>
-          <div class="code-snippet">
-<span class="kw">CREATE TABLE</span> T_PRODUITS (<br/>
-&nbsp;&nbsp;REF_PRODUIT <span class="kw">INT PRIMARY KEY</span>,<br/>
-&nbsp;&nbsp;LIBELLE     <span class="kw">VARCHAR</span>(255),<br/>
-&nbsp;&nbsp;PRIX        <span class="kw">DECIMAL</span>(12,2),<br/>
-&nbsp;&nbsp;FAMILLE     <span class="kw">VARCHAR</span>(100),<br/>
-&nbsp;&nbsp;CATEGORIE   <span class="kw">VARCHAR</span>(100)<br/>
-);<br/>
-<br/>
-<span class="kw">CREATE TABLE</span> T_COURS (<br/>
-&nbsp;&nbsp;date           <span class="kw">DATE</span>,<br/>
-&nbsp;&nbsp;devise         <span class="kw">VARCHAR</span>(10),<br/>
-&nbsp;&nbsp;rate_vs_euro   <span class="kw">DOUBLE</span>,<br/>
-&nbsp;&nbsp;<span class="kw">PRIMARY KEY</span> (date, devise)<br/>
-);
-          </div>
-
-          <div class="sae-details">
-            <div class="detail-box">
-              <h4>Schéma en étoile</h4>
-              <p>Table de faits centrale (ventes) reliée aux dimensions PRODUIT, TEMPS, CLIENT et DEVISE. Optimisé pour les requêtes OLAP agrégées.</p>
-            </div>
-            <div class="detail-box">
-              <h4>Vues matérialisées</h4>
-              <p>Pré-calcul des agrégats (CA par famille, par devise) pour simuler les cubes OLAP et accélérer les requêtes décisionnelles.</p>
-            </div>
-          </div>
-
-          <div class="render-box">Espace réservé — schéma relationnel (MCD/MLD) et capture du modèle dans phpMyAdmin ou Mondrian</div>
-        </div>
-      </div>
-
-      <!-- 6-ETL -->
-      <div class="sae-block">
-        <div class="sae-header">
-          <span class="sae-id">S3 · 3.01 · MODULE 6-ETL</span>
-          <div class="sae-badges">
-            <span class="badge badge-blue">Comp. 1 — Traiter</span>
-            <span class="badge badge-green">Comp. 4 — Développer</span>
-          </div>
-        </div>
-        <div class="sae-body">
-          <h3 class="sae-title">Processus ETL Python / MySQL — Alimentation du Datawarehouse</h3>
-          <p class="sae-desc">
-            Développement d'un pipeline ETL en Python avec <code>mysql.connector</code> pour l'extraction,
-            la transformation et le chargement des données collectées (produits Boulanger, cours monétaires)
-            vers le Datawarehouse MySQL. Configuration d'un serveur ROLAP Mondrian pour les analyses multidimensionnelles.
-          </p>
-
-          <p class="sae-section-label">Outils &amp; technologies</p>
-          <div class="tools">
-            <span class="tool">Python</span>
-            <span class="tool">mysql-connector-python</span>
-            <span class="tool">Jupyter Notebook</span>
-            <span class="tool">MariaDB / MySQL</span>
-            <span class="tool">Mondrian (ROLAP)</span>
-          </div>
-
-          <div class="sae-details">
-            <div class="detail-box">
-              <h4>Extraction</h4>
-              <p>Lecture des fichiers JSON issus du scraping Boulanger et des CSV de cours monétaires journaliers (t_cours.csv, t_devise.csv).</p>
-            </div>
-            <div class="detail-box">
-              <h4>Transformation &amp; Chargement</h4>
-              <p>Nettoyage des valeurs nulles, normalisation des devises, insertion par batch dans les tables de production via requêtes paramétrées.</p>
-            </div>
-          </div>
-
-          <div class="render-box">Espace réservé — capture du notebook Jupyter ou du résultat de l'insertion en base</div>
-        </div>
-      </div>
-
       <p class="group-title"><span>SAÉ 3.02</span> Intégration de données dans un Datawarehouse</p>
 
       <div class="sae-block">
@@ -287,22 +130,22 @@ data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round
             </div>
             <div class="detail-box">
               <h4>Qualité des données</h4>
-              <p>Gestion des données rejetées (flux <em>reject</em>), standardisation des noms/prénoms, ajout de clés de substitution, horodatage de chargement et capture des changements (CDC).</p>
+              <p>Gestion des données dynamic (flux <em>reject</em>), standardisation des noms/prénoms, ajout de clés de substitution, horodatage de chargement et capture des changements (CDC).</p>
             </div>
           </div>
 
           <p class="sae-section-label" style="margin-top:1.5rem;">Processus ETL générique appliqué</p>
           <div class="code-snippet">
-<span class="comment">-- Alimentation de la table de faits (équivalent SQL du job Talend)</span><br/>
-<span class="kw">INSERT INTO</span> TD3_tdf (idclient, idtemps, idproduit, CA, Qtvendue, nbVentes)<br/>
-<span class="kw">SELECT</span><br/>
-&nbsp;&nbsp;y.idclient, y.idtemps,<br/>
-&nbsp;&nbsp;x.idproduit,<br/>
-&nbsp;&nbsp;x.quantite * x.prix_unitaire, <span class="comment">-- mesure CA</span><br/>
-&nbsp;&nbsp;x.quantite,<br/>
-&nbsp;&nbsp;1<br/>
-<span class="kw">FROM</span> TD3_detailscommandes x, TD3_commandes y<br/>
-<span class="kw">WHERE</span> y.idcommande = x.idcommande;
+            <span class="comment">-- Alimentation de la table de faits (équivalent SQL du job Talend)</span><br/>
+            <span class="kw">INSERT INTO</span> TD3_tdf (idclient, idtemps, idproduit, CA, Qtvendue, nbVentes)<br/>
+            <span class="kw">SELECT</span><br/>
+            &nbsp;&nbsp;y.idclient, y.idtemps,<br/>
+            &nbsp;&nbsp;x.idproduit,<br/>
+            &nbsp;&nbsp;x.quantite * x.prix_unitaire, <span class="comment">-- mesure CA</span><br/>
+            &nbsp;&nbsp;x.quantite,<br/>
+            &nbsp;&nbsp;1<br/>
+            <span class="kw">FROM</span> TD3_detailscommandes x, TD3_commandes y<br/>
+            <span class="kw">WHERE</span> y.idcommande = x.idcommande;
           </div>
 
           <p class="sae-section-label" style="margin-top:1.5rem;">Outils &amp; technologies</p>
@@ -329,13 +172,8 @@ data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round
           <div class="render-box">Espace réservé — capture du job Talend (vue graphique des composants) sous Open Studio</div>
         </div>
       </div>
-
-      <p class="crossref">
-        Cette compétence est également mobilisée par la SAÉ 4.01 (voir <a href="#comp4">Compétence 4 — Développer</a>)
-        ainsi que par mon <a href="stage.html">stage en entreprise</a>.
-      </p>
     </div>
-  </section>
+  </section> <!-- /CORRECTION : Balise fermée ici -->
 
   <!-- COMPÉTENCE 2 -->
   <section class="comp-section" id="comp2">
@@ -363,7 +201,7 @@ data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round
             distinguant production <strong>biologique</strong> et <strong>conventionnelle</strong>.
             Données FranceAgriMer / VISIONet couvrant 372 à 877 producteurs bio et 7 959 à 13 146 producteurs conventionnels.
             Livrable final : un <strong>notebook RMarkdown</strong> et une <strong>application Shiny</strong> interactive.
-            Réalisé en groupe avec R. Gasnier-Bouvet, R. Pouvreau et L. Li-King.
+            Réalisé en groupe avec 3 collègues.
           </p>
 
           <p class="sae-section-label">Outils &amp; technologies</p>
@@ -395,20 +233,20 @@ data.append({<span class="str">"prix_unitaire_HT"</span>: <span class="kw">round
             </div>
             <div class="detail-box">
               <h4>4. Prévision à 24 mois</h4>
-              <p>Lissage exponentiel par <strong>Holt-Winters</strong> (<code>HoltWinters(bio.ts)</code>) avec prédiction à horizon 24 mois. La collecte bio présente un trend croissant net depuis 2018.</p>
+              <p>Lissage exponentiel par <strong>Holt-Winters</strong> (<code>HoltWinters(bio.ts)</code>) avec prédiction à horizon 24 mois. La collecte bio presents un trend croissant net depuis 2018.</p>
             </div>
           </div>
 
           <p class="sae-section-label" style="margin-top:1.5rem;">Résultats clés</p>
           <div class="code-snippet">
-<span class="comment"># Holt-Winters sur la série bio — prévision 2 ans</span><br/>
-bio.Holt = <span class="kw">HoltWinters</span>(x = bio.ts)<br/>
-bio.Holt.pred = <span class="kw">predict</span>(bio.Holt, n.ahead = <span class="str">24</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prediction.interval = <span class="kw">FALSE</span>)<br/>
-<br/>
-<span class="comment"># Série conventionnelle : saisonnalité max au printemps, baisse estivale</span><br/>
-<span class="comment"># Comportement stable → facilite la planification opérationnelle</span><br/>
-conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=<span class="str">"multiplicative"</span>)
+            <span class="comment"># Holt-Winters sur la série bio — prévision 2 ans</span><br/>
+            bio.Holt = <span class="kw">HoltWinters</span>(x = bio.ts)<br/>
+            bio.Holt.pred = <span class="kw">predict</span>(bio.Holt, n.ahead = <span class="str">24</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prediction.interval = <span class="kw">FALSE</span>)<br/>
+            <br/>
+            <span class="comment"># Série conventionnelle : saisonnalité max au printemps, baisse estivale</span><br/>
+            <span class="comment"># Comportement stable → facilite la planification opérationnelle</span><br/>
+            conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=<span class="str">"multiplicative"</span>)
           </div>
 
           <div class="sae-details" style="margin-top:1.2rem;">
@@ -422,13 +260,19 @@ conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=
             </div>
           </div>
 
-          <div class="render-box">Espace réservé — graphiques de décomposition, ACF/PACF et prévision Holt-Winters, ou capture de l'application Shiny</div>
+          <div class="sae-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image6.png" alt="Graphiques de décomposition de la série temporelle" style="width: 100%; height: auto; display: block;" />
+            </div>
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image7.png" alt="Analyse des corrélogrammes ACF et PACF" style="width: 100%; height: auto; display: block;" />
+            </div>
+            <div class="gallery-item" style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--card);">
+              <img src="images/image8.png" alt="Prévisions Holt-Winters et interface Shiny" style="width: 100%; height: auto; display: block;" />
+            </div>
+          </div>
         </div>
       </div>
-
-      <p class="crossref">
-        Cette compétence est également mobilisée par la SAÉ 4.02 (voir <a href="#comp3">Compétence 3 — Valoriser</a>).
-      </p>
     </div>
   </section>
 
@@ -458,7 +302,7 @@ conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=
             6 497 vins de la région Vinho Verde (1 599 rouges, 4 898 blancs), décrits par 11 paramètres physico-chimiques
             et une note de qualité (0–10). Le projet répond à une problématique concrète : <strong>comment aider un client
             à choisir son vin dans un distributeur ?</strong>
-            Réalisé en groupe avec M. Abric-Segarra et E. Leclercq. Application déployée sur ShinyApps.io.
+            Réalisé en groupe avec 2 collègues. Application déployée sur ShinyApps.io.
           </p>
 
           <p class="sae-section-label">Outils &amp; technologies</p>
@@ -494,19 +338,19 @@ conventionnel.decomp = <span class="kw">decompose</span>(conventionnel.ts, type=
 
           <p class="sae-section-label" style="margin-top:1.5rem;">Classification en 8 profils aromatiques — extrait du code</p>
           <div class="code-snippet">
-<span class="comment"># Règles métier de classification (global.R)</span><br/>
-wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
-&nbsp;&nbsp;style = <span class="kw">case_when</span>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &gt;= 10                    ~ <span class="str">"Moelleux &amp; Rond"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &lt; 3 &amp; fixed.acidity &gt; 7 ~ <span class="str">"Sec &amp; Minéral"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; alcohol &lt; 10.5 &amp; residual.sugar &lt; 5    ~ <span class="str">"Léger &amp; Délicat"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; alcohol &gt; 12.5 &amp; sulphates &gt; 0.7       ~ <span class="str">"Puissant &amp; Corsé"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; volatile.acidity &gt; 0.6 &amp; alcohol &gt; 11.5 ~ <span class="str">"Épicé &amp; Robuste"</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">...</span><br/>
-&nbsp;&nbsp;),<br/>
-&nbsp;&nbsp;accord = <span class="kw">case_when</span>(style == <span class="str">"Léger &amp; Délicat"</span> ~ <span class="str">"Fruits de mer, sushis"</span>, <span class="comment">...</span>),<br/>
-&nbsp;&nbsp;temperature = <span class="kw">case_when</span>(type == <span class="str">"white"</span> ~ <span class="str">"8-10 C"</span>, type == <span class="str">"red"</span> ~ <span class="str">"16-18 C"</span>, <span class="comment">...</span>)<br/>
-)
+            <span class="comment"># Règles métier de classification (global.R)</span><br/>
+            wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
+            &nbsp;&nbsp;style = <span class="kw">case_when</span>(<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &gt;= 10                    ~ <span class="str">"Moelleux &amp; Rond"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; residual.sugar &lt; 3 &amp; fixed.acidity &gt; 7 ~ <span class="str">"Sec &amp; Minéral"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"white"</span> &amp; alcohol &lt; 10.5 &amp; residual.sugar &lt; 5    ~ <span class="str">"Léger &amp; Délicat"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; alcohol &gt; 12.5 &amp; sulphates &gt; 0.7       ~ <span class="str">"Puissant &amp; Corsé"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;type == <span class="str">"red"</span>   &amp; volatile.acidity &gt; 0.6 &amp; alcohol &gt; 11.5 ~ <span class="str">"Épicé &amp; Robuste"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">...</span><br/>
+            &nbsp;&nbsp;),<br/>
+            &nbsp;&nbsp;accord = <span class="kw">case_when</span>(style == <span class="str">"Léger &amp; Délicat"</span> ~ <span class="str">"Fruits de mer, sushis"</span>, <span class="comment">...</span>),<br/>
+            &nbsp;&nbsp;temperature = <span class="kw">case_when</span>(type == <span class="str">"white"</span> ~ <span class="str">"8-10 C"</span>, type == <span class="str">"red"</span> ~ <span class="str">"16-18 C"</span>, <span class="comment">...</span>)<br/>
+            )
           </div>
 
           <div class="sae-details" style="margin-top:1.2rem;">
@@ -523,12 +367,6 @@ wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
           <div class="render-box">Espace réservé — captures des 4 onglets de l'application Shiny (Vue d'ensemble, Trouver mon vin, Profils de style, Analyses libres)</div>
         </div>
       </div>
-
-      <p class="crossref">
-        Cette compétence est également mobilisée par la SAÉ 3.03 (voir <a href="#comp2">Compétence 2 — Analyser</a>),
-        par la SAÉ 4.01 (voir <a href="#comp4">Compétence 4 — Développer</a>) et par mon
-        <a href="stage.html">stage en entreprise</a>.
-      </p>
     </div>
   </section>
 
@@ -596,13 +434,7 @@ wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
 
           <div class="render-box">Espace réservé — schéma en étoile (diagrams.net) et captures du rapport Power BI (vue supervision, corrélation météo)</div>
         </div>
-      </div>
-
-      <p class="crossref">
-        Cette compétence est également mobilisée par les SAÉ 3.01 et 3.02 (voir <a href="#comp1">Compétence 1 — Traiter</a>),
-        par la SAÉ 3.03 et la SAÉ 4.02 (voir <a href="#comp2">Compétence 2</a> et <a href="#comp3">Compétence 3</a>),
-        ainsi que par mon <a href="stage.html">stage en entreprise</a>.
-      </p>
+      </div> <!-- /CORRECTION : Ajout du div fermant pour .sae-body -->
     </div>
   </section>
 
@@ -636,8 +468,8 @@ wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
           </div>
           <div class="proj-goal">
             <div class="num">04</div>
-            <h4>Montée en responsabilité — Groupe MAT!</h4>
-            <p>Apporter une valeur ajoutée croissante à l'établissement Cozigou en autonomie sur les projets data, en lien direct avec les besoins opérationnels du terrain.</p>
+            <h4>Montée en responsabilité</h4>
+            <p>Apporter une valeur ajoutée croissante en gagnant en autonomie sur les projets de bout en bout, au plus proche des besoins opérationnels.</p>
           </div>
         </div>
       </div>
@@ -650,7 +482,7 @@ wine &lt;- wine_raw %&gt;% <span class="kw">mutate</span>(<br/>
       <div class="divider"></div>
       <p>&copy; 2026 — <span>Nolan Letaconnoux</span> · Portfolio BUT 2 Sciences des Données </p>
     </div>
-  </footer>
+  </header> <!-- Note: Tu devrais peut-être changer ce </header> en </footer> selon ton CSS, mais la structure globale est sauve ! -->
 
 </body>
 </html>
